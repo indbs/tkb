@@ -1,0 +1,27 @@
+CREATE TABLE 
+TKB_ENTITIES_STORE(
+  ROW_ID INT(4) NOT NULL AUTO_INCREMENT, 
+  INSERTED DATETIME NOT NULL, 
+  ID    varchar(20), 
+  PAR1  float(9, 8) not null, 
+  PAR2  float(9, 8) not null, 
+  PAR3  float(9, 8) not null, 
+  PAR4  float(9, 8) not null, 
+  PAR5  float(9, 8) not null, 
+  PAR6  float(9, 8) not null, 
+  PAR7  float(9, 8) not null, 
+  PAR8  float(9, 8) not null, 
+  PAR9  float(9, 8) not null, 
+  PAR10 float(9, 8) not null, 
+  PAR11 float(9, 8) not null, 
+  PAR12 float(9, 8) not null, 
+  PAR13 float(9, 8) not null, 
+  PAR14 float(9, 8) not null, 
+  PAR15 float(9, 8) not null, 
+  PAR16 float(9, 8) not null, 
+  PAR17 float(9, 8) not null, 
+  PAR18 float(9, 8) not null, 
+  PAR19 float(9, 8) not null, 
+  PAR20 float(9, 8) not null, 
+  PRIMARY KEY(ROW_ID)
+  );
