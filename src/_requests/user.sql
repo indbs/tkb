@@ -1,0 +1,3 @@
+CREATE USER 'tkb'@'%' IDENTIFIED BY 'tkb_pass';
+
+GRANT SELECT, INSERT, DELETE ON kiln.TKB_ENTITIES_STORE TO 'tkb'@'%';

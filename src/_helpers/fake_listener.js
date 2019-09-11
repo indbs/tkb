@@ -1,5 +1,7 @@
 import { requestTimeConstants }     from '../_constants/constants.js'
-import fetch                        from 'node-fetch'
+import   fetch                      from 'node-fetch'
+import { createMySQLConnection,
+         makeMySQLConnection } 			from '../_db/connection.js';
 
 fake_listener();
 
@@ -8,7 +10,7 @@ function fake_listener(){
   setInterval(() => {
     requestDataService()
     .then(
-      result => console.log(result),
+      result => collectResults(result),
       error =>  console.log(error))
   }, requestTimeConstants.development)            
 }
@@ -29,4 +31,13 @@ function handleResponse(response) {
       console.log('returning');
       return data;
   });
+}
+
+function collectResults(){
+  var connection = createMySQLConnection();
+  makeMySQLConnection(connection)
+  .then(
+    ()    => insertRowInDB(req, res, con),
+		error => console.log(error)
+  )
 }
