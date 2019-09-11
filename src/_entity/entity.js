@@ -25,7 +25,7 @@ export const fixedOrderedEntity = {
 export function buildOrderedEntity(parameterName = 'Параметр '){
   var entity = {};
   entity['ID'] = 'id string';
-  for(i=1; i<21; i++){
+  for(var i=1; i<21; i++){
     entity[parameterName + i] = Math.random(10)/10
   }
   return entity;

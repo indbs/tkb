@@ -1,4 +1,4 @@
-import { buildOrderedEntity }     from '_entity/entity.js'
+import { buildOrderedEntity }     from '../_entity/entity.js'
 import { createServer } 			    from 'http';
 
 export function talkingToFakeBackendService(requestType = 'on') {
@@ -9,18 +9,20 @@ export function talkingToFakeBackendService(requestType = 'on') {
 }
 
 function handleResponse(ok = true){
-  if (ok) return {ok: ok, result: JSON.stringify(buildOrderedEntity())}
+  if (ok)   return {ok: ok,   result: JSON.stringify(buildOrderedEntity())}
+  if (!ok)  return {ok: !ok,  result: 'service unnavailable'}
 }
 
 createServer(function (req, res) {
+  console.log('connected');
   talkingToFakeBackendService('on')
   .then(
-    result => writeAnswer(res, 200, result, 'application/json'),
-    error =>  writeAnswer(res, 400, error, 'text/html'),
+    result  =>  writeAnswer(res, 200, result, 'application/json'),
+    error   =>  writeAnswer(res, 400, error,  'text/html'),
   )
-}.listen(8070));
+}).listen(8070);
 
 function writeAnswer(res, responseCode, responseResult, responseType){
 	res.writeHead(responseCode, {'Content-Type': responseType});
-	res.end(responseResult);
+	res.end(responseResult.result);
 }
