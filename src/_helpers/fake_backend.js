@@ -1,4 +1,4 @@
-import { buildOrderedEntity }     from '../_entity/entity.js'
+import { buildRandomEntity }      from '../_entity/entity.js'
 import { createServer } 			    from 'http';
 
 export function talkingToFakeBackendService(requestType = 'on') {
@@ -9,7 +9,7 @@ export function talkingToFakeBackendService(requestType = 'on') {
 }
 
 function handleResponse(ok = true){
-  if (ok)   return {ok: ok,   result: JSON.stringify(buildOrderedEntity())}
+  if (ok)   return {ok: ok,   result: JSON.stringify(buildRandomEntity())}
   if (!ok)  return {ok: !ok,  result: 'service unnavailable'}
 }
 

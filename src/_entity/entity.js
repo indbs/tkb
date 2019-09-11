@@ -22,15 +22,11 @@ export const fixedOrderedEntity = {
   'Параметр 20' : 0.60,
 };
 
-export function buildOrderedEntity(parameterName = 'Параметр '){
+export function buildRandomEntity(parameterName = 'Параметр '){
   var entity = {};
-  entity['ID'] = 'id string';
+  entity['ID'] = 'Entity ' + Math.random(20);
   for(var i=1; i<21; i++){
     entity[parameterName + i] = Math.random(10)/10
   }
   return entity;
-}
-
-export function disorderEntity(entity = {}){
-
 }
