@@ -1,5 +1,6 @@
 import { buildRandomEntity }      from '../_entity/entity.js'
 import { createServer } 			    from 'http';
+import { appPorts}                from '../_constants/constants.js';
 
 export function talkingToFakeBackendService(requestType = 'on') {
   if (requestType == 'on') 
@@ -20,7 +21,7 @@ createServer(function (req, res) {
     result  =>  writeAnswer(res, 200, result, 'application/json'),
     error   =>  writeAnswer(res, 400, error,  'text/html'),
   )
-}).listen(8070);
+}).listen(appPorts.fake_listen_port);
 
 function writeAnswer(res, responseCode, responseResult, responseType){
 	res.writeHead(responseCode, {'Content-Type': responseType});

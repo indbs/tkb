@@ -4,7 +4,8 @@ import { createMySQLConnection,
          makeMySQLConnection } 			                    from '../_db/connection.js';
 import { selectOneEntityFromDB,
          selectAllEntitiesFromDB } 			                from '../_db/manipulations.js';
-import { mySQL_userConstants }                          from '../_constants/constants.js'
+import { mySQL_userConstants,
+         appPorts }                                     from '../_constants/constants.js';
 
 createServer(function (req, res) {
 	console.log('user connected');
@@ -44,4 +45,4 @@ createServer(function (req, res) {
     error => console.log(error)
   )
 
-}).listen(8071);
+}).listen(appPorts.client_request_port);
