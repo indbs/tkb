@@ -24,9 +24,17 @@ export const fixedOrderedEntity = {
 
 export function buildRandomEntity(parameterName = 'Параметр '){
   var entity = {};
-  entity['ID'] = 'Entity ' + Math.random(20);
+  entity['ID'] = 'Entity ' + randomSignedInteger(1, 20);
   for(var i=1; i<21; i++){
-    entity[parameterName + i] = Math.random(10)/10
+    entity[parameterName + i] = randomSignedFloat(-1, 1);
   }
   return entity;
+}
+
+function randomSignedFloat(min, max){
+  return Math.random() * (max - min) + min;
+}
+
+function randomSignedInteger(min, max){
+  return Math.floor(Math.random() * (max - min) + min);
 }
