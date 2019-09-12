@@ -2,6 +2,7 @@ import { requestTimeConstants }     from '../_constants/constants.js'
 import   fetch                      from 'node-fetch'
 import { createMySQLConnection,
          makeMySQLConnection } 			from '../_db/connection.js';
+import { insertRowInDB } 			      from '../_db/manipulations.js';
 
 fake_listener();
 
@@ -33,11 +34,14 @@ function handleResponse(response) {
   });
 }
 
-function collectResults(){
+function collectResults(result){
   var connection = createMySQLConnection();
   makeMySQLConnection(connection)
   .then(
-    ()    => insertRowInDB(req, res, con),
+    ()    => {
+      console.log(result);
+      insertRowInDB(result, connection)
+    },
 		error => console.log(error)
   )
 }
