@@ -19,3 +19,34 @@ export function insertRowInDB(result, connection){
     )
   })
 }
+
+export function selectOneEntityFromDB(entityNumber, connection){
+  return new Promise((resolve, reject) => {
+    readMySQLQuery('./src/_requests/selectOneEntity.sql')
+    .then(
+      text_query  => queryMySQLConnection(connection, text_query, entityNumber),
+      errRead     => reject(errRead.toString())
+    )
+    .then(
+      results     => resolve(JSON.stringify(results)),
+      errQuery    => reject(errQuery.toString())
+    )
+  })
+}
+
+export function selectAllEntitiesFromDB(connection){
+  return new Promise((resolve, reject) => {
+    readMySQLQuery('./src/_requests/selectAllEntities.sql')
+    .then(
+      text_query  => queryMySQLConnection(connection, text_query),
+      errRead     => reject(errRead.toString())
+    )
+    .then(
+      results     => {
+        console.log(results);
+        resolve(JSON.stringify(results))
+      },
+      errQuery    => reject(errQuery.toString())
+    )
+  })
+}
