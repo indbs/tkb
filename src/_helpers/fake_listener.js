@@ -3,6 +3,7 @@ import   fetch                      from 'node-fetch'
 import { createMySQLConnection,
          makeMySQLConnection } 			from '../_db/connection.js';
 import { insertRowInDB } 			      from '../_db/manipulations.js';
+import { mySQL_userConstants }      from '../_constants/constants.js'
 
 fake_listener();
 
@@ -35,7 +36,11 @@ function handleResponse(response) {
 }
 
 function collectResults(result){
-  var connection = createMySQLConnection();
+  const userData ={
+    user:     mySQL_userConstants.user_listener,
+    password: mySQL_userConstants.password_listener,
+  }
+  var connection = createMySQLConnection(userData);
   makeMySQLConnection(connection)
   .then(
     ()    => {

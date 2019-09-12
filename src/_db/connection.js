@@ -1,11 +1,10 @@
 import { createConnection }                             from 'mysql';
-import { mySQL_userConstants }                          from '../_constants/constants.js'
 
-export function createMySQLConnection(){
+export function createMySQLConnection(userData){
   var connection = createConnection({
     host                    : 'localhost',
-    user                    :  mySQL_userConstants.user,
-    password                :  mySQL_userConstants.password,
+    user                    :  userData.user,
+    password                :  userData.password,
     database                : 'kiln',
     timezone                : 'Moscow',
     multipleStatements      :  true

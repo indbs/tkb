@@ -4,6 +4,8 @@ export const requestTimeConstants = {
 };
 
 export const mySQL_userConstants = {
-  user:       'tkb',
-  password:   'tkb_pass'
+  user_listener:        'tkb',
+  password_listener:    'tkb_pass',
+  user_extractor:       'tkb_extractor',
+  password_extractor:   'tkb_extractor_pass'
 };
