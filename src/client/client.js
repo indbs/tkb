@@ -5,16 +5,15 @@ import { requestTimeConstants,
 
 createServer(function (req, res) {
   console.log('welcome');
-  setInterval(() => {
-    requestDataService('http://localhost:' + appPorts.client_request_port)
-    .then(
-      result => {
-        const publishRows = buildHtmlRows(result);
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.end(writeTable(publishRows));
-      },
-      error =>  console.log(error)
-  )}, requestTimeConstants.client_update_time)
+  requestDataService('http://localhost:' + appPorts.client_request_port)
+  .then(
+    result => {
+      const publishRows = buildHtmlRows(result);
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.end(writeTable(publishRows));
+    },
+    error =>  console.log(error)
+  )
 }).listen(appPorts.client_host_port);
 
 function buildHtmlRows(result){
@@ -38,6 +37,7 @@ function buildHtmlRows(result){
 function writeTable(publishRows){
   //Указываем кодировку для корректного отображения кириллицы
   const charSet                 = '<meta charset="UTF-8">';
+  const refresh                 = '<meta http-equiv="refresh" content="1">';
   //Начало элемента таблица
   const table_starter           = '<table class="tkb-table">';
   //Начало формирования шапки таблицы
@@ -63,7 +63,7 @@ function writeTable(publishRows){
   const style_footer            = '</style>';
   const style                   = style_starter + style_table + style_body + style_header + style_footer;
 
-  return charSet + table + style;
+  return charSet + refresh + table + style;
 }
 
 function tdDisplayStyle(tdValue){
