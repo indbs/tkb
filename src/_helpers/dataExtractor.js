@@ -21,9 +21,14 @@ createServer(function (req, res) {
       //Проверка на передачу параметров в запросе
       if ((Object.keys(inputQueryParams)[0])&&(inputQueryParams[Object.keys(inputQueryParams)[0]])){
         //Проверка на передачу целого числа в качестве номера желаемой сущности
-        if ((Object.keys(inputQueryParams)[0] == 'Entity')&&(Number.isInteger(inputQueryParams[Object.keys(inputQueryParams)[0]]))){
-          console.log('selectOneEntityFromDB');
-          selectOneEntityFromDB(inputQueryParams[Object.keys(inputQueryParams)[0]], connection);
+        if ((Object.keys(inputQueryParams)[0] == 'Entity')&&(Number.isInteger(parseInt(inputQueryParams[Object.keys(inputQueryParams)[0]])))){
+          selectOneEntityFromDB(inputQueryParams[Object.keys(inputQueryParams)[0]], connection)
+          .then(result => {
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.end(result);
+          },
+          error => console.log(error)
+          )
         }
       }
       else{

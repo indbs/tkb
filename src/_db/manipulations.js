@@ -42,10 +42,7 @@ export function selectAllEntitiesFromDB(connection){
       errRead     => reject(errRead.toString())
     )
     .then(
-      results     => {
-        console.log(results);
-        resolve(JSON.stringify(results))
-      },
+      results     => resolve(JSON.stringify(results)),
       errQuery    => reject(errQuery.toString())
     )
   })
