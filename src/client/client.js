@@ -25,7 +25,9 @@ function buildHtmlRows(result){
     var rowToDisplay = '';
     for (var j = 2; j < 22; ++j)
     {
-      rowToDisplay = rowToDisplay  + '<td>' + result[i][Object.keys(result[i])[j]] + '</td>';
+      var tdValue = result[i][Object.keys(result[i])[j]];
+      var className = tdDisplayStyle(parseFloat(tdValue));
+      rowToDisplay = rowToDisplay  + '<td ' + 'style=' + className + '>' + tdValue + '</td>';
     }
     
     finalString = finalString + '<tr>' + '<td>' + id + '</td>' + rowToDisplay + '</tr>';
@@ -55,11 +57,22 @@ function writeTable(publishRows){
   const table                   = table_starter + table_header + table_rows_start + publishRows + table_rows_end + table_footer;
   //Стили для таблицы
   const style_starter           = '<style>';
-  const style_table             = '.tkb-table {border: solid 1px #DDEEEE;border-collapse: collapse;border-spacing: 0;font: normal 13px Arial, sans-serif;}'
-  const style_header            = '.tkb-table thead th {background-color: #DDEFEF;border: solid 1px #DDEEEE;color: #336B6B;padding: 10px;text-align: left;text-shadow: 1px 1px 1px #fff;}'
-  const style_body              = '.tkb-table tbody td {border: solid 1px #DDEEEE;color: #333;padding: 10px;text-shadow: 1px 1px 1px #fff;}'
+  const style_table             = '.tkb-table {border: solid 1px #DDEEEE;border-collapse: collapse;border-spacing: 0;font: normal 13px Arial, sans-serif;}';
+  const style_header            = '.tkb-table thead th {background-color: #DDEFEF;border: solid 1px #DDEEEE;color: #336B6B;padding: 10px;text-align: left;text-shadow: 1px 1px 1px #fff;}';
+  const style_body              = '.tkb-table tbody td {border: solid 1px #DDEEEE;color: #333;padding: 10px;text-shadow: 1px 1px 1px #fff;}';
   const style_footer            = '</style>';
-  const style                   = style_starter + style_table + style_header + style_body + style_footer;
+  const style                   = style_starter + style_table + style_body + style_header + style_footer;
 
   return charSet + table + style;
+}
+
+function tdDisplayStyle(tdValue){
+  var className                 = '';
+  if((tdValue>=-1)&&(tdValue<0))
+    className                   = 'background-color:rgba(255,140,0,' + Math.abs(tdValue) + ')';
+  if(tdValue==0)
+    className                   = 'background-color:rgb(255,255,255)';
+  if((tdValue>0)&&(tdValue<1))
+    className                   = 'background-color:rgba(0,0,0,' + Math.abs(tdValue) + ')';
+  return className;
 }
