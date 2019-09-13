@@ -1,7 +1,6 @@
 import { createServer } 						from 'http';
 import { requestDataService }       from '../_common/requestDataService';
-import { requestTimeConstants,
-         appPorts }                 from '../_constants/constants.js';
+import { appPorts }                 from '../_constants/constants.js';
 
 createServer(function (req, res) {
   console.log('welcome');

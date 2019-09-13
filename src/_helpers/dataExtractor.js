@@ -8,7 +8,11 @@ import { mySQL_userConstants,
          appPorts }                                     from '../_constants/constants.js';
 
 createServer(function (req, res) {
-	console.log('user connected');
+  console.log('user connected');
+  //разрешаем CORS
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, access-control-allow-origin");
+
   const userData ={
     user:     mySQL_userConstants.user_extractor,
     password: mySQL_userConstants.password_extractor,

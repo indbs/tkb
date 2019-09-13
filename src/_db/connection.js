@@ -15,7 +15,7 @@ export function createMySQLConnection(userData){
 export function makeMySQLConnection(connection){
   return new Promise((resolve, reject) => {
     connection.connect(function(err) {
-      if (err) reject(prepareAnswer(200, err.toString(), 'text/html'));
+      if (err) reject(err);
       resolve();
     });
   })
