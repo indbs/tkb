@@ -1,6 +1,7 @@
-import { buildRandomEntity }      from '../_entity/entity.js'
-import { createServer } 			    from 'http';
-import { appPorts}                from '../_constants/constants.js';
+import { buildRandomEntity,
+         buildOrderedRandomEntitySequence }       from '../_entity/entity.js'
+import { createServer } 			                    from 'http';
+import { appPorts}                                from '../_constants/constants.js';
 
 export function talkingToFakeBackendService(requestType = 'on') {
   if (requestType == 'on') 
@@ -10,7 +11,7 @@ export function talkingToFakeBackendService(requestType = 'on') {
 }
 
 function handleResponse(ok = true){
-  if (ok)   return {ok: ok,   result: JSON.stringify(buildRandomEntity())}
+  if (ok)   return {ok: ok,   result: JSON.stringify(buildOrderedRandomEntitySequence())}
   if (!ok)  return {ok: !ok,  result: 'service unnavailable'}
 }
 

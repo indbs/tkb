@@ -30,7 +30,6 @@ export function queryMySQLConnection(connection, text_query, query_parameters){
     connection.query(text_query, query_parameters, (errQuery, results) => {
       if (errQuery) reject(errQuery);
       else {
-        closeMySQLConnection(connection)
         resolve(results)};
     })
   });

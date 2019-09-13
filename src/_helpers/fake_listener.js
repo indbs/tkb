@@ -2,7 +2,7 @@ import { requestTimeConstants,
          appPorts}                  from '../_constants/constants.js';
 import { createMySQLConnection,
          makeMySQLConnection } 			from '../_db/connection.js';
-import { insertRowInDB } 			      from '../_db/manipulations.js';
+import { insertEntitySequenceInDB } from '../_db/manipulations.js';
 import { mySQL_userConstants }      from '../_constants/constants.js';
 import { requestDataService }       from '../_common/requestDataService.js';
 
@@ -25,7 +25,7 @@ function collectResults(result){
   var connection = createMySQLConnection(userData);
   makeMySQLConnection(connection)
   .then(
-    ()    => insertRowInDB(result, connection),
+    ()    => insertEntitySequenceInDB(result, connection),
 		error => console.log(error)
   )
 }

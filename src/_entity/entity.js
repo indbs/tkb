@@ -1,5 +1,6 @@
+//Шаблон одной слуйчаной сущности
 export const fixedOrderedEntity = {
-  ID: '',
+  ID: 'Entity 4',
   'Параметр 1'  : 0.55,
   'Параметр 2'  : 0.13,
   'Параметр 3'  : 0.15,
@@ -22,9 +23,20 @@ export const fixedOrderedEntity = {
   'Параметр 20' : 0.60,
 };
 
-export function buildRandomEntity(parameterName = 'Параметр '){
+//Упорядоченная последовательность из 20-ти сущностей
+//TODO реализовать неупорядоченную последовательность
+export function buildOrderedRandomEntitySequence(){
+  var entitySequence = [];
+  for(var i=1; i<21; i++){
+    entitySequence.push(buildRandomEntity('Параметр ', i));
+  }
+  return entitySequence;
+}
+
+//Сущность с набором случайных параметров
+export function buildRandomEntity(parameterName = 'Параметр ', entityNumber){
   var entity = {};
-  entity['ID'] = 'Entity ' + randomSignedInteger(1, 20);
+  entity['ID'] = 'Entity ' + entityNumber;
   for(var i=1; i<21; i++){
     entity[parameterName + i] = randomSignedFloat(-1, 1);
   }
