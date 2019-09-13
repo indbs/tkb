@@ -5,6 +5,5 @@
 
 Клиентская часть на html (заменена на REACT), в ней пока не реализовано:
 1. Нет возможности выбрать агрегатную функцию.
-2. Автообновления данных.
 
 <img src="https://github.com/indbs/tkb/blob/github/tkb_overview.jpg" width="500">

@@ -11,7 +11,8 @@ export class EntityTable extends React.Component{
     axios.get('http://172.16.20.75:' + appPorts.client_request_port, {headers: {'Access-Control-Allow-Origin': '*'}})
     .then(
       (result)  => {
-        this.setState({dataTable: result.data});
+        console.log(result.data[1]);
+        this.setState({dataTable: result.data[1]});
       },
       (err)     => console.log(err),
     )
@@ -47,7 +48,12 @@ export class EntityTable extends React.Component{
   }
 
   componentDidMount() {
-    this.requestData();  
+    this.interval = setInterval(() => this.requestData(), 1000); 
+    this.requestData(); 
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render(){
@@ -170,7 +176,8 @@ export class EntityTable extends React.Component{
             defaultPageSize={20}
             showPagination={false}
             getTdProps={this.colorMe}
-        />}
+            
+          />}
       </div>
     )
   }

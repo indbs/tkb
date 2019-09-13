@@ -40,7 +40,10 @@ export function selectOneEntityFromDB(entityNumber, connection){
       errRead     => reject(errRead.toString())
     )
     .then(
-      results     => resolve(JSON.stringify(results)),
+      results     => {
+        closeMySQLConnection(connection);
+        resolve(JSON.stringify(results));
+      },
       errQuery    => reject(errQuery.toString())
     )
   })
@@ -54,7 +57,10 @@ export function selectAllEntitiesFromDB(connection){
       errRead     => reject(errRead.toString())
     )
     .then(
-      results     => resolve(JSON.stringify(results)),
+      results     => {
+        closeMySQLConnection(connection);
+        resolve(JSON.stringify(results))
+      },
       errQuery    => reject(errQuery.toString())
     )
   })
