@@ -9,4 +9,4 @@ html
 <img src="https://github.com/indbs/tkb/blob/github/tkb_overview.jpg" width="500">
 
 React
-<img src="https://github.com/indbs/tkb/blob/github/react_client_overview.jpg" width="500">
+<img src="https://github.com/indbs/tkb/blob/github/react_client/react_client_overview.jpg" width="500">
